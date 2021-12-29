@@ -3,6 +3,8 @@ package com.example.cleancode.chapter_fourteen;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import static com.example.cleancode.chapter_fourteen.ArgsException.ErrorCode.MISSING_STRING;
+
 public class StringArgumentMarshaler implements ArgumentMarshaler {
     private String stringVale = "";
 
@@ -10,7 +12,7 @@ public class StringArgumentMarshaler implements ArgumentMarshaler {
         try {
             stringVale = currentArgument.next();
         } catch (NoSuchElementException e) {
-            throw new ArgsException(MMISSING_STRING);
+            throw new ArgsException(MISSING_STRING);
         }
     }
 

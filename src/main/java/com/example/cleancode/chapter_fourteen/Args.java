@@ -3,6 +3,8 @@ package com.example.cleancode.chapter_fourteen;
 import java.util.Map;
 import java.util.*;
 
+import static com.example.cleancode.chapter_fourteen.ArgsException.ErrorCode.*;
+
 public class Args {
     private Map<Character, ArgumentMarshaler> marshalers;
     private Set<Character> argsFound;

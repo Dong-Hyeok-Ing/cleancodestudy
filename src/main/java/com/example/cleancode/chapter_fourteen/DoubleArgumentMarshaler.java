@@ -3,6 +3,8 @@ package com.example.cleancode.chapter_fourteen;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import static com.example.cleancode.chapter_fourteen.ArgsException.ErrorCode.*;
+
 public class DoubleArgumentMarshaler {
     private int intValue = 0;
 
