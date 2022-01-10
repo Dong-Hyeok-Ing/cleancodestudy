@@ -5,24 +5,24 @@ import java.util.NoSuchElementException;
 
 import static com.example.cleancode.chapter_fourteen.ArgsException.ErrorCode.*;
 
-public class DoubleArgumentMarshaler {
-    private int intValue = 0;
+public class DoubleArgumentMarshaler implements ArgumentMarshaler {
+    private double doubleValue = 0;
 
     public void set(Iterator<String> currentArgument) throws ArgsException {
         String parameter = null;
         try {
             parameter = currentArgument.next();
-            intValue = Integer.parseInt(parameter);
+            doubleValue = Double.parseDouble(parameter);
         } catch (NoSuchElementException e) {
-            throw new ArgsException(MISSING_INTEGER);
+            throw new ArgsException(MISSING_DOUBLE);
         } catch (NumberFormatException e) {
-            throw new ArgsException(INVALID_INTEGER, parameter);
+            throw new ArgsException(INVALID_DOUBLE, parameter);
         }
     }
 
-    public static int getValue(ArgumentMarshaler am) {
-        if(am != null && am instanceof IntegerArgumentMarshaler)
-            return ((IntegerArgumentMarshaler) am).intValue;
+    public static double getValue(ArgumentMarshaler am) {
+        if (am != null && am instanceof DoubleArgumentMarshaler)
+            return ((DoubleArgumentMarshaler) am).doubleValue;
         else
             return 0;
     }

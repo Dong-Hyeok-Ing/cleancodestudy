@@ -1,5 +1,7 @@
 package com.example.cleancode.chapter_fourteen;
 
+import static com.example.cleancode.chapter_fourteen.ArgsException.ErrorCode.*;
+
 public class ArgsException extends Exception {
     private char errorArgumentId = '\0';
     private String errorParameter = null;
@@ -71,7 +73,9 @@ public class ArgsException extends Exception {
     }
 
     public enum ErrorCode {
-        OK, INVALID_ARGUMENT_FORMAT, UNEXPECTED_ARGUMENT,
+        OK,
+        INVALID_ARGUMENT_FORMAT,
+        UNEXPECTED_ARGUMENT,
         INVALID_ARGUMENT_NAME,
         MISSING_STRING,
         MISSING_INTEGER,

@@ -1,27 +1,27 @@
 package com.example.cleancode.chapter_fourteen;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
-public class StringArrayArgumentMarshaler {
-    private String[] intValue = {"",""};
+import static com.example.cleancode.chapter_fourteen.ArgsException.ErrorCode.MISSING_STRING;
+
+public class StringArrayArgumentMarshaler implements ArgumentMarshaler {
+    private List<String> strings = new ArrayList<String>();
 
     public void set(Iterator<String> currentArgument) throws ArgsException {
-        String parameter = null;
         try {
-            parameter = currentArgument.next();
-
+            strings.add(currentArgument.next());
         } catch (NoSuchElementException e) {
-            throw new ArgsException(MISSING_INTEGER);
-        } catch (NumberFormatException e) {
-            throw new ArgsException(INVALID_INTEGER, parameter);
+            throw new ArgsException(MISSING_STRING);
         }
     }
 
     public static String[] getValue(ArgumentMarshaler am) {
-        if(am != null && am instanceof IntegerArgumentMarshaler)
-            return ((IntegerArgumentMarshaler) am).intValue;
+        if (am != null && am instanceof StringArrayArgumentMarshaler)
+            return ((StringArrayArgumentMarshaler) am).strings.toArray(new String[0]);
         else
-            return intValue;
+            return new String[0];
     }
 }
